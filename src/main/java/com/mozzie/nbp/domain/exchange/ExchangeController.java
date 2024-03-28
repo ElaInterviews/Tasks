@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ExchangeController {
     private final ExchangeService exchangeService;
-    
+
     @GetMapping("/usd-pln/{amountUsd}")
     @SneakyThrows(NumberFormatException.class)
     public ResponseEntity<BigDecimal> getAmountAmericanDollars(@PathVariable BigDecimal amountUsd) {

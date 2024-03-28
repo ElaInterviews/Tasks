@@ -1,5 +1,6 @@
 package com.mozzie.nbp.domain.account;
 
+import com.mozzie.nbp.domain.exception.AccountNotFoundException;
 import com.mozzie.nbp.domain.exchange.ExchangeService;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -37,7 +38,7 @@ public class AccountService {
         if (optionalAccount.isPresent()) {
             return optionalAccount.get();
         } else {
-            throw new RuntimeException("Konto o podanym identyfikatorze nie istnieje.");
+            throw new AccountNotFoundException("Konto o podanym identyfikatorze nie istnieje: " + accountId);
         }
     }
 }
