@@ -1,5 +1,6 @@
-package com.mozzie.nbp.domain.models;
+package com.mozzie.nbp.domain;
 
+import com.mozzie.nbp.domain.models.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

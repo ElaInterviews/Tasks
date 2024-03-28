@@ -1,4 +1,4 @@
-package com.mozzie.nbp;
+package com.mozzie.nbp.domain.DTOs;
 
 import lombok.*;
 

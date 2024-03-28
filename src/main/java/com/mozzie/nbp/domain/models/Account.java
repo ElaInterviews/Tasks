@@ -15,4 +15,5 @@ public class Account {
     private String firstName;
     private String lastName;
     private BigDecimal balancePLN;
+    private BigDecimal balanceUSD;
 }

@@ -1,16 +1,19 @@
-package com.mozzie.nbp.domain.models;
+package com.mozzie.nbp.domain.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mozzie.nbp.NbpChildDto;
-import com.mozzie.nbp.NbpParentDto;
+import com.mozzie.nbp.domain.DTOs.NbpChildDto;
+import com.mozzie.nbp.domain.DTOs.NbpParentDto;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-
+@RequiredArgsConstructor
 public class ExchangeRateService {
 
     @Value("${nbp.api.url}")
@@ -26,7 +29,7 @@ public class ExchangeRateService {
 
     @Transactional
     @SneakyThrows
-    public String getUSDRateFromNbp() {
+    public String getUsdRate() {
         URL url = new URL(nbpApiUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("GET");
@@ -54,5 +57,16 @@ public class ExchangeRateService {
             .findFirst();
 
         return usdRate.orElseThrow(() -> new RuntimeException("Nie znaleziono kursu dla waluty USD."));
+    }
+
+    @Transactional
+    public BigDecimal getAmountUsd(BigDecimal amountPln) {
+        return amountPln.multiply( new BigDecimal(getUsdRate()));
+    }
+
+    @Transactional
+    public BigDecimal getAmountPln(BigDecimal amountUsd) {
+        BigDecimal exchangeRate = new BigDecimal(getUsdRate());
+        return amountUsd.divide(exchangeRate, RoundingMode.HALF_UP);
     }
 }

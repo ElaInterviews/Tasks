@@ -1,8 +1,9 @@
-package com.mozzie.nbp;
+package com.mozzie.nbp.domain.services;
 
+import com.mozzie.nbp.domain.DTOs.AccountDto;
 import com.mozzie.nbp.domain.models.Account;
-import com.mozzie.nbp.domain.models.AccountRepository;
-import com.mozzie.nbp.domain.models.ExchangeRateService;
+import com.mozzie.nbp.domain.AccountRepository;
+import com.mozzie.nbp.domain.services.ExchangeRateService;
 import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,7 +16,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final ExchangeRateService exchangeRateService;
 
-    public Account createAccount(AccountDTO accountDTO) {
+    public Account createAccount(AccountDto accountDTO) {
 
         String accountId = UUID.randomUUID().toString();
 
@@ -23,8 +24,9 @@ public class AccountService {
         account.setAccountId(accountId);
         account.setFirstName(accountDTO.getFirstName());
         account.setLastName(accountDTO.getLastName());
-        account.setBalancePLN(accountDTO.getInitialBalancePLN().multiply(
-            new BigDecimal(exchangeRateService.getUSDRateFromNbp())));
+        account.setBalancePLN(accountDTO.getInitialBalancePLN());
+        account.setBalanceUSD(accountDTO.getInitialBalancePLN().multiply(
+            new BigDecimal(exchangeRateService.getUsdRate())));
 
         accountRepository.save(account);
 
@@ -36,7 +38,7 @@ public class AccountService {
         Optional<Account> optionalAccount = accountRepository.findById(accountId);
 
         if (optionalAccount.isPresent()) {
-            return optionalAccount.get(); // Zwrócenie danych o koncie, jeśli istnieje
+            return optionalAccount.get();
         } else {
             throw new RuntimeException("Konto o podanym identyfikatorze nie istnieje.");
         }
