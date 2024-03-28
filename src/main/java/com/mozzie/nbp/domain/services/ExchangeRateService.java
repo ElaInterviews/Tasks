@@ -58,15 +58,4 @@ public class ExchangeRateService {
 
         return usdRate.orElseThrow(() -> new RuntimeException("Nie znaleziono kursu dla waluty USD."));
     }
-
-    @Transactional
-    public BigDecimal getAmountUsd(BigDecimal amountPln) {
-        return amountPln.multiply( new BigDecimal(getUsdRate()));
-    }
-
-    @Transactional
-    public BigDecimal getAmountPln(BigDecimal amountUsd) {
-        BigDecimal exchangeRate = new BigDecimal(getUsdRate());
-        return amountUsd.divide(exchangeRate, RoundingMode.HALF_UP);
-    }
 }

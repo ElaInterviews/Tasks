@@ -5,6 +5,8 @@ import com.mozzie.nbp.domain.models.Account;
 import com.mozzie.nbp.domain.services.AccountService;
 import com.mozzie.nbp.domain.services.ExchangeRateService;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +35,18 @@ public class AccountController {
     }
 
     @GetMapping("/pln-to-usd/{amountPln}")
+    @SneakyThrows(NumberFormatException.class)
     public ResponseEntity<BigDecimal> getAmountAmericanDollars(@PathVariable BigDecimal amountPln) {
-        BigDecimal amountUsd = exchangeRateService.getAmountUsd(amountPln);
+        BigDecimal exchangeRate = new BigDecimal(exchangeRateService.getUsdRate());
+        BigDecimal amountUsd = amountPln.multiply(exchangeRate);
         return ResponseEntity.ok(amountUsd);
     }
 
     @GetMapping("/usd-to-pln/{amountUsd}")
+    @SneakyThrows(NumberFormatException.class)
     public ResponseEntity<BigDecimal> getAmountPolishZlotych(@PathVariable BigDecimal amountUsd) {
-        BigDecimal amountPln = exchangeRateService.getAmountPln(amountUsd);
+        BigDecimal exchangeRate = new BigDecimal(exchangeRateService.getUsdRate());
+        BigDecimal amountPln = amountUsd.divide(exchangeRate, 2, RoundingMode.HALF_UP);
         return ResponseEntity.ok(amountPln);
     }
 }
