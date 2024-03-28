@@ -1,4 +1,4 @@
-package com.mozzie.nbp.domain.exception;
+package com.mozzie.nbp.domain.exceptions;
 
 public class UsdRateNotFoundException extends RuntimeException {
 

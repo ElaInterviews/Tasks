@@ -1,6 +1,6 @@
 package com.mozzie.nbp.domain.account;
 
-import com.mozzie.nbp.domain.exception.AccountNotFoundException;
+import com.mozzie.nbp.domain.exceptions.AccountNotFoundException;
 import com.mozzie.nbp.domain.exchange.ExchangeService;
 import java.math.BigDecimal;
 import java.math.RoundingMode;

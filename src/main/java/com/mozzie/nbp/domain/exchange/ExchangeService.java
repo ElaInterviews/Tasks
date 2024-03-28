@@ -3,7 +3,7 @@ package com.mozzie.nbp.domain.exchange;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mozzie.nbp.domain.exception.UsdRateNotFoundException;
+import com.mozzie.nbp.domain.exceptions.UsdRateNotFoundException;
 import com.mozzie.nbp.domain.nbpdtos.NbpChildDto;
 import com.mozzie.nbp.domain.nbpdtos.NbpParentDto;
 import java.io.BufferedReader;
