@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AccountService {
-
     private final AccountRepository accountRepository;
 
     public Account createAccount(String firstName, String lastName, BigDecimal initialBalancePLN) {
