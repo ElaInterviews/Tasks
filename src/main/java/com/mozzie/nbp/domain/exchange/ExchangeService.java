@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.SneakyThrows;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class ExchangeService {
 
     @Value("${nbp.api.url}")
-    @Setter
     private String nbpApiUrl;
 
     @Transactional
