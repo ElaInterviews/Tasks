@@ -1,4 +1,4 @@
-package com.mozzie.nbp.domain.models;
+package com.mozzie.nbp.domain.account;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Account {
+public class AccountModel {
     @Id
     private String accountId;
     private String firstName;

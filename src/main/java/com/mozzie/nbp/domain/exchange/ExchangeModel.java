@@ -1,12 +1,11 @@
-package com.mozzie.nbp.domain.models;
+package com.mozzie.nbp.domain.exchange;
 
-import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ExchangeRate {
+public class ExchangeModel {
     private String currencyCode;
     private Double rate;
 }

@@ -1,14 +1,12 @@
-package com.mozzie.nbp.domain.services;
+package com.mozzie.nbp.domain.exchange;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mozzie.nbp.domain.DTOs.NbpChildDto;
-import com.mozzie.nbp.domain.DTOs.NbpParentDto;
+import com.mozzie.nbp.domain.nbpdtos.NbpChildDto;
+import com.mozzie.nbp.domain.nbpdtos.NbpParentDto;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -22,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ExchangeRateService {
+public class ExchangeService {
 
     @Value("${nbp.api.url}")
     private String nbpApiUrl;

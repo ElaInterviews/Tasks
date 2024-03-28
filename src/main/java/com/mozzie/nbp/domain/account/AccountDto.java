@@ -1,4 +1,4 @@
-package com.mozzie.nbp.domain.DTOs;
+package com.mozzie.nbp.domain.account;
 
 import java.math.BigDecimal;
 import lombok.Getter;
