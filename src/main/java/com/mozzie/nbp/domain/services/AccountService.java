@@ -5,9 +5,11 @@ import com.mozzie.nbp.domain.models.Account;
 import com.mozzie.nbp.domain.AccountRepository;
 import com.mozzie.nbp.domain.services.ExchangeRateService;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,9 +27,8 @@ public class AccountService {
         account.setFirstName(accountDTO.getFirstName());
         account.setLastName(accountDTO.getLastName());
         account.setBalancePLN(accountDTO.getInitialBalancePLN());
-        account.setBalanceUSD(accountDTO.getInitialBalancePLN().multiply(
-            new BigDecimal(exchangeRateService.getUsdRate())));
-
+        account.setBalanceUSD(accountDTO.getInitialBalancePLN().divide(
+            new BigDecimal(exchangeRateService.getUsdRate()), 2, RoundingMode.HALF_UP));
         accountRepository.save(account);
 
         return account;
