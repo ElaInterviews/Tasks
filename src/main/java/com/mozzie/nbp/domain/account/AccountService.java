@@ -1,9 +1,6 @@
-package com.mozzie.nbp.domain.services;
+package com.mozzie.nbp.domain.account;
 
-import com.mozzie.nbp.domain.account.AccountDto;
 import com.mozzie.nbp.domain.exchange.ExchangeService;
-import com.mozzie.nbp.domain.account.AccountModel;
-import com.mozzie.nbp.domain.account.AccountRepository;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Optional;

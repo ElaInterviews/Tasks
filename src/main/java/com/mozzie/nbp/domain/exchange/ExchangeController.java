@@ -1,6 +1,5 @@
-package com.mozzie.nbp.domain.services;
+package com.mozzie.nbp.domain.exchange;
 
-import com.mozzie.nbp.domain.exchange.ExchangeService;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import lombok.SneakyThrows;
