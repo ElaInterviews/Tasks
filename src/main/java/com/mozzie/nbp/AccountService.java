@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 public class AccountService {
     private final AccountRepository accountRepository;
 
-    public Account createAccount(String firstName, String lastName, BigDecimal initialBalancePLN) {
+    public Account createAccount(AccountDTO accountDTO) {
 
         String accountId = UUID.randomUUID().toString();
 
         Account account = new Account();
         account.setAccountId(accountId);
-        account.setFirstName(firstName);
-        account.setLastName(lastName);
-        account.setBalancePLN(initialBalancePLN);
+        account.setFirstName(accountDTO.getFirstName());
+        account.setLastName(accountDTO.getLastName());
+        account.setBalancePLN(accountDTO.getInitialBalancePLN());
 
         accountRepository.save(account);
 

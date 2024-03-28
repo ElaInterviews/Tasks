@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class ExchangeRate {
     private String currencyCode;
-    private BigDecimal rate;
+    private Double rate;
 }

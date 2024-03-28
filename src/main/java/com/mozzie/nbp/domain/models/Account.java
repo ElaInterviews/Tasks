@@ -13,9 +13,6 @@ import lombok.Setter;
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String accountId;
     private String firstName;
     private String lastName;
