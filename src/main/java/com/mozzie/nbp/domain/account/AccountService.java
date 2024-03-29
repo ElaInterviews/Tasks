@@ -15,7 +15,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final ExchangeService exchangeService;
 
-    public AccountModel createAccount(AccountDto accountDTO) {
+    public String createAccount(AccountDto accountDTO) {
 
         String accountId = UUID.randomUUID().toString();
 
@@ -28,7 +28,7 @@ public class AccountService {
             new BigDecimal(exchangeService.getUsdRate()), 2, RoundingMode.HALF_UP));
         accountRepository.save(accountModel);
 
-        return accountModel;
+        return accountModel.getAccountId();
     }
 
     public AccountModel getAccountDetails(String accountId) {
