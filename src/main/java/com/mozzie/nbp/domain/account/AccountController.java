@@ -17,9 +17,9 @@ public class AccountController {
         return new ResponseEntity<>(accountModel, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{accountId}")
-    public ResponseEntity<AccountModel> getAccountDetails(@PathVariable String accountId) {
-        AccountModel accountModel = accountService.getAccountDetails(accountId);
+    @GetMapping("/{pesel}")
+    public ResponseEntity<AccountModel> getAccountDetails(@PathVariable String pesel) {
+        AccountModel accountModel = accountService.getAccountDetails(pesel);
         return ResponseEntity.ok(accountModel);
     }
 }
