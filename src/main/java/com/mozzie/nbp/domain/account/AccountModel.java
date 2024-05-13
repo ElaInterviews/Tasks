@@ -11,9 +11,8 @@ import lombok.Setter;
 @Entity
 public class AccountModel {
     @Id
-    private String accountId;
+    private Byte pesel;
     private String firstName;
     private String lastName;
     private BigDecimal balancePLN;
-    private BigDecimal balanceUSD;
 }
