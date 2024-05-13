@@ -21,13 +21,13 @@ public class AccountService {
         Optional<AccountModel> optionalAccount = accountRepository.findById(pesel);
 
         if (optionalAccount.isPresent())
-            throw new AccountAlreadyExistsException("Konto o podanym peselu już istnieje: " + pesel);
+            throw new AccountAlreadyExistsException("Konto o peselu: " + pesel + " już istnieje" );
 
         if (!isPeselValid(pesel))
-            throw new PeselInvalidException("Pesel " + pesel + " nie jest poprawny");
+            throw new PeselInvalidException("Pesel: " + pesel + " nie jest poprawny");
 
         if (!isAdult(pesel))
-            throw new PersonNotAdultException("Osoba o peselu " + accountDTO.getPesel() + " nie jest pełnoletnia");
+            throw new PersonNotAdultException("Osoba o peselu: " + pesel + " nie jest pełnoletnia");
 
 
         AccountModel accountModel = new AccountModel();
